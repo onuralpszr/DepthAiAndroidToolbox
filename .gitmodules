@@ -4,4 +4,4 @@
 	branch = cmake-android
 [submodule "app/src/main/cpp/depthai-core"]
 	path = app/src/main/cpp/depthai-core
-	url = https://github.com/luxonis/depthai-core.git
+	url = https://github.com/luxonis/depthai-core
