@@ -5,7 +5,7 @@
 #include "depthai/depthai.hpp"
 
 extern "C" JNIEXPORT jstring
-Java_com_example_depthaiandroidtoolbox_MainActivity_stringFromJNI(
+Java_com_os_depthaiandroidtoolbox_MainActivity_stringFromJNI(
         JNIEnv *env,
         jobject /* this */) {
     auto r = libusb_set_option(nullptr, LIBUSB_OPTION_ANDROID_JNIENV, env);
