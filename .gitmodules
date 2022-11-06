@@ -1,0 +1,7 @@
+[submodule "app/src/main/cpp/libusb"]
+	path = app/src/main/cpp/libusb
+	url = https://github.com/luxonis/libusb.git
+	branch = cmake-android
+[submodule "app/src/main/cpp/depthai-core"]
+	path = app/src/main/cpp/depthai-core
+	url = https://github.com/luxonis/depthai-core.git
