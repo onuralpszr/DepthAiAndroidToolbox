@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "DepthAiAndroidToolbox"
 include ':app'
+include ':opencvsdk460'
+project(":opencvsdk460").projectDir = file("opencvsdk460/sdk")

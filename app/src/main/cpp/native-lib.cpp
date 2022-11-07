@@ -2,7 +2,9 @@
 #include <string>
 
 #include <libusb.h>
-#include "depthai/depthai.hpp"
+#include <depthai/depthai.hpp>
+#include <opencv2/opencv.hpp>
+
 
 extern "C" JNIEXPORT jstring
 Java_com_os_depthaiandroidtoolbox_MainActivity_stringFromJNI(

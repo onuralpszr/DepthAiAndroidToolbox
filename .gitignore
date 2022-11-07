@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+#Ignore opencv sdk folder for minimize the repo size download via setupOpenCV.sh or manually 
+/opencvsdk460

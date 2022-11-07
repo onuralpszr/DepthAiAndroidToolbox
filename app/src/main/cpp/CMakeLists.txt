@@ -22,7 +22,6 @@ add_library( # Sets the name of the library.
 
         # Sets the library as a shared library.
         SHARED
-
         # Provides a relative path to your source file(s).
         native-lib.cpp)
 
@@ -42,9 +41,11 @@ find_library( # Sets the name of the path variable.
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
-
+set(ANDROID_OPENCV_COMPONENTS "opencv_java" CACHE STRING "")
+find_package(OpenCV REQUIRED COMPONENTS ${ANDROID_OPENCV_COMPONENTS})
 target_link_libraries( # Specifies the target library.
         depthaiandroidtoolbox
+        ${ANDROID_OPENCV_COMPONENTS}
         depthai::core
         usb-1.0
         # Links the target library to the log library

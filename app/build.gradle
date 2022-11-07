@@ -16,7 +16,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-
+                arguments "-DOpenCV_DIR=" + file('../opencvsdk460').absolutePath + "/sdk/native/jni",
+                        "-DANDROID_TOOLCHAIN=clang",
+                        "-DANDROID_STL=c++_shared"
                 cppFlags '-std=c++17'
             }
         }
@@ -35,7 +37,7 @@ android {
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
-            version '3.18.1'
+            version '3.22.1'
         }
     }
     buildFeatures {
@@ -48,12 +50,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Std Android/Kotlin libs
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // Material
+    implementation 'com.google.android.material:material:1.7.0'
+
     //OpenCV
+    implementation project(path: ':opencvsdk460')
 
 
     // Test Libs
