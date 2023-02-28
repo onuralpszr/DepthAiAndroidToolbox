@@ -1,13 +1,15 @@
 package com.os.depthaiandroidtoolbox
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.AssetManager
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.os.depthaiandroidtoolbox.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,14 +18,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Example of a call to a native method
-        binding.sampleText.text = stringFromJNI()
+        binding.sampleText.text = ""
     }
 
     /**
      * A native method that is implemented by the 'depthaiandroidtoolbox' native library,
      * which is packaged with this application.
      */
-    private external fun stringFromJNI(): String
+    open fun getAssetManager(): AssetManager? {
+        return assets
+    }
+
+
+    external fun startDevice(model_path: String?, rgbWidth: Int, rgbHeight: Int)
+    external fun imageFromJNI(): IntArray?
+    external fun detectionImageFromJNI(): IntArray?
+    external fun depthFromJNI(): IntArray?
 
     companion object {
         // Used to load the 'depthaiandroidtoolbox' library on application startup.
