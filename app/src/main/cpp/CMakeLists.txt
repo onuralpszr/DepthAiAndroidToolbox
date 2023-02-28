@@ -19,11 +19,11 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/libusb)
 
 add_library( # Sets the name of the library.
         depthaiandroidtoolbox
-
         # Sets the library as a shared library.
         SHARED
         # Provides a relative path to your source file(s).
-        native-lib.cpp)
+        native-lib.cpp
+        cvDaiUtils.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -50,4 +50,5 @@ target_link_libraries( # Specifies the target library.
         usb-1.0
         # Links the target library to the log library
         # included in the NDK.
+        android
         ${log-lib})

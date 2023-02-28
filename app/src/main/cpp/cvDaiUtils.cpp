@@ -1,7 +1,7 @@
 #include <opencv2/imgproc.hpp>
 #include "depthai/depthai.hpp"
 
-#include "CvDaiUtils.h"
+#include "cvDaiUtils.h"
 
 
 extern "C" void readModelFromAsset(const char* model_path, std::vector<uint8_t>& model_buf, JNIEnv* env, jobject obj)
@@ -123,9 +123,9 @@ extern "C" cv::Mat imgframeToCvMat(const std::shared_ptr<dai::ImgFrame>& imgFram
             cv::Size s(imgFrame->getWidth(), imgFrame->getHeight());
             std::vector<cv::Mat> channels;
             // RGB
-            channels.push_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 0));
-            channels.push_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 1));
-            channels.push_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 2));
+            channels.emplace_back(s, CV_8UC1, imgFrame->getData().data() + s.area() * 0);
+            channels.emplace_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 1));
+            channels.emplace_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 2));
             cv::merge(channels, output);
         } break;
 
@@ -133,9 +133,9 @@ extern "C" cv::Mat imgframeToCvMat(const std::shared_ptr<dai::ImgFrame>& imgFram
             cv::Size s(imgFrame->getWidth(), imgFrame->getHeight());
             std::vector<cv::Mat> channels;
             // BGR
-            channels.push_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 2));
-            channels.push_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 1));
-            channels.push_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 0));
+            channels.emplace_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 2));
+            channels.emplace_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 1));
+            channels.emplace_back(cv::Mat(s, CV_8UC1, imgFrame->getData().data() + s.area() * 0));
             cv::merge(channels, output);
         } break;
 
