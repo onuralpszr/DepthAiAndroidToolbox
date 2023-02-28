@@ -2,6 +2,7 @@
 
 <resources>
     <!-- specifying no attributes matches every device -->
-    <usb-device vendor-id="999" product-id="9349"/>
-    <usb-device  />
+    <usb-device vendor-id="999" product-id="9349"/><usb-device  />
+    <usb-device vendor-id="03e7" product-id="2485" class="255" subclass="66" protocol="1" />
+
 </resources>
