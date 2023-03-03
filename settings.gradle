@@ -16,3 +16,4 @@ rootProject.name = "DepthAiAndroidToolbox"
 include ':app'
 include ':opencvsdk470'
 project(":opencvsdk470").projectDir = file("opencvsdk470/sdk")
+
