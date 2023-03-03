@@ -25,12 +25,12 @@ class MainActivity : AppCompatActivity() {
      * A native method that is implemented by the 'depthaiandroidtoolbox' native library,
      * which is packaged with this application.
      */
-    open fun getAssetManager(): AssetManager? {
+    fun getAssetManager(): AssetManager? {
         return assets
     }
 
 
-    external fun startDevice(model_path: String?, rgbWidth: Int, rgbHeight: Int)
+    external fun startDevice(modelPath: String?, rgbWidth: Int, rgbHeight: Int)
     external fun imageFromJNI(): IntArray?
     external fun detectionImageFromJNI(): IntArray?
     external fun depthFromJNI(): IntArray?

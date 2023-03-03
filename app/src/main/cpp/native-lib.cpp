@@ -6,8 +6,7 @@
 #include "cvDaiUtils.h"
 
 
-        std::shared_ptr<dai::Device>
-device;
+std::shared_ptr<dai::Device> device;
 std::shared_ptr<dai::DataOutputQueue> qRgb, qDepth, qDet;
 cv::Mat detection_img;
 
