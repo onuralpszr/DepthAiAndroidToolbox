@@ -33,19 +33,18 @@ Java_com_os_depthaiandroidtoolbox_MainActivity_startDevice(JNIEnv *env,
                                                            int rgbHeight
 ) {
 
-// libusb
-    auto r = libusb_set_option(nullptr, LIBUSB_OPTION_ANDROID_JNIENV, env);
-    log("libusb_set_option ANDROID_JAVAVM: %s", libusb_strerror(r));
+    // libusb
+    auto libusbSetOption = libusb_set_option(nullptr, LIBUSB_OPTION_ANDROID_JNIENV, env);
+    log("libusb_set_option ANDROID_JAVAVM: %s", libusb_strerror(libusbSetOption));
 
-// Connect to device and start pipeline
+    // Connect to device and start pipeline
     device = std::make_shared<dai::Device>(dai::OpenVINO::VERSION_2021_4, dai::UsbSpeed::HIGH);
-
     bool oakD = device->getConnectedCameras().size() == 3;
 
-// Create pipeline
+    // Create pipeline
     dai::Pipeline pipeline;
 
-// Define source and output
+    // Define source and output
     auto camRgb = pipeline.create<dai::node::ColorCamera>();
     auto xoutRgb = pipeline.create<dai::node::XLinkOut>();
     xoutRgb->setStreamName("rgb");
@@ -240,16 +239,14 @@ Java_com_os_depthaiandroidtoolbox_MainActivity_detectionImageFromJNI(
 
     if (inDet) {
 
-// Draw detections into the rgb image
+        // Draw detections into the rgb image
         detections = inDet->detections;
         draw_detections(detection_img, detections
         );
     }
 
-// Copy image data to Bitmap int array
-    return
-            cvMatToBmpArray(env, detection_img
-            );
+    // Copy image data to Bitmap int array
+    return cvMatToBmpArray(env, detection_img);
 }
 
 

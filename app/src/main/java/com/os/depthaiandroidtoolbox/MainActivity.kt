@@ -21,39 +21,49 @@ class MainActivity : AppCompatActivity() {
     private val rgbHeight = 416
     private val disparityWidth = 640
     private val disparityHeight = 400
-    private var framePeriod: Long = 30
+    private val framePeriod:Long = 30
 
     private var running: Boolean = false
     private var firstTime: Boolean = false
-    private var rgbImage: Bitmap = Bitmap.createBitmap(rgbWidth, rgbHeight, Bitmap.Config.ARGB_8888)
+    private var rgbImage: Bitmap =
+        Bitmap.createBitmap(rgbWidth, rgbHeight, Bitmap.Config.ARGB_8888)
     private var depthImage: Bitmap =
         Bitmap.createBitmap(disparityWidth, disparityHeight, Bitmap.Config.ARGB_8888)
+    val handler = Handler(Looper.getMainLooper())
 
-    fun runDepthaiCamera() {
-        if (running) {
+
+    private fun runDepthaiCamera() {
             if (firstTime) {
                 // Start the device
                 startDevice(yolov5ModelPath, rgbWidth, rgbHeight)
                 firstTime = false
             }
-            val rgb = imageFromJNI()
-            if (rgb != null && rgb.isNotEmpty()) {
-                rgbImage.setPixels(rgb, 0, rgbWidth, 0, 0, rgbWidth, rgbHeight)
-                binding.rgbImageView.setImageBitmap(rgbImage)
-            }
-            val detectionsImg = detectionImageFromJNI()
-            if (detectionsImg != null && detectionsImg.isNotEmpty()) {
-                rgbImage.setPixels(detectionsImg, 0, rgbWidth, 0, 0, rgbWidth, rgbHeight)
-                binding.rgbImageView.setImageBitmap(rgbImage)
-            }
-            val depth = depthFromJNI()
-            if (depth != null && depth.isNotEmpty()) {
-                depthImage.setPixels(
-                    depth, 0, disparityWidth, 0, 0, disparityWidth, disparityHeight
-                )
-                binding.depthImageView.setImageBitmap(depthImage)
-            }
-        }
+                val rgb = imageFromJNI()
+                if (rgb != null && rgb.isNotEmpty()) {
+                    rgbImage.setPixels(rgb, 0, rgbWidth, 0, 0, rgbWidth, rgbHeight)
+                    binding.rgbImageView.setImageBitmap(rgbImage)
+                }
+                val detectionsImg = detectionImageFromJNI()
+                if (detectionsImg != null && detectionsImg.isNotEmpty()) {
+                    rgbImage.setPixels(detectionsImg, 0, rgbWidth, 0, 0, rgbWidth, rgbHeight)
+                    binding.rgbImageView.setImageBitmap(rgbImage)
+                }
+                val depth = depthFromJNI()
+                if (depth != null && depth.isNotEmpty()) {
+                    depthImage.setPixels(
+                        depth, 0, disparityWidth, 0, 0, disparityWidth, disparityHeight
+                    )
+                    binding.depthImageView.setImageBitmap(depthImage)
+                }
+    }
+
+    private fun scheduleDepthaiCamera() {
+        handler.postDelayed({
+            // Call the function
+            runDepthaiCamera()
+            // Schedule the function to run again after 30ms
+            scheduleDepthaiCamera()
+        }, framePeriod)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,11 +79,15 @@ class MainActivity : AppCompatActivity() {
             running = true;
             firstTime = true;
         }
+        scheduleDepthaiCamera()
 
-        Handler(Looper.getMainLooper()).postDelayed({
+
+/*        Handler(Looper.getMainLooper()).postDelayed({
             runDepthaiCamera()
-        }, framePeriod)
+        }, framePeriod)*/
     }
+
+
 
     // Main loop where the data is obtained from the device and shown into the screen
 
