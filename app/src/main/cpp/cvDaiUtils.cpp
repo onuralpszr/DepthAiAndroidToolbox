@@ -105,7 +105,7 @@ cv::Mat getFrame(const std::shared_ptr<dai::ImgFrame>& imgFrame) {
 }
 
 // Ref: https://github.com/luxonis/depthai-core/blob/5cafb68da68e7242e94c7ebd038baa919f7e4835/src/opencv/ImgFrame.cpp#L95
-extern "C" cv::Mat imgframeToCvMat(const std::shared_ptr<dai::ImgFrame>& imgFrame){
+cv::Mat imgframeToCvMat(const std::shared_ptr<dai::ImgFrame>& imgFrame){
 
     cv::Mat frame = getFrame(imgFrame);
     cv::Mat output;
