@@ -17,6 +17,7 @@ android {
             cmake {
                 arguments "-DOpenCV_DIR=" + file('../opencvsdk470').absolutePath + "/sdk/native/jni",
                         "-DANDROID_TOOLCHAIN=clang",
+                        "-DDEPTHAI_BUILD_EXAMPLES=OFF",
                         "-DANDROID_STL=c++_shared"
                 cppFlags '-std=c++17'
             }
