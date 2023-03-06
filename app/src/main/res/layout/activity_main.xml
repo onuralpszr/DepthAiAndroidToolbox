@@ -10,7 +10,7 @@
         android:id="@+id/rgb_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RGB"
+        android:text="Detection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,7 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.06"
-        app:srcCompat="@drawable/ic_launcher_background"
         android:contentDescription="RGB Image" />
 
 
@@ -51,7 +50,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintVertical_bias="0.907"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
