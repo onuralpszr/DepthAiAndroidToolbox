@@ -5,12 +5,14 @@
 
 cmake_minimum_required(VERSION 3.18.1)
 
-# Declares and names the project.
 set(BUILD_SHARED_LIBS ON)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/depthai-core EXCLUDE_FROM_ALL)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/depthai-core)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/libusb)
+
+# Declare after depthai because of `hunter gate` setting
+# Declares and names the project.
 project("depthaiandroidtoolbox")
 
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/libusb)
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -41,8 +43,10 @@ find_library( # Sets the name of the path variable.
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
+
 set(ANDROID_OPENCV_COMPONENTS "opencv_java" CACHE STRING "")
 find_package(OpenCV REQUIRED COMPONENTS ${ANDROID_OPENCV_COMPONENTS})
+
 target_link_libraries( # Specifies the target library.
         depthaiandroidtoolbox
         ${ANDROID_OPENCV_COMPONENTS}
