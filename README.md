@@ -17,6 +17,11 @@ DepthAi Android Toolbox Application For OAK-D Devices
 This android project needs to OpenCV 4.7.0 (and other 4.x.y versions) for Android in [Android Studio](https://developer.android.com/studio) with Native Development Kit (NDK) support.
 [Android NDK](https://developer.android.com/ndk) enables you to implement your [OpenCV](https://opencv.org) image processing pipeline in C++ and call that C++ code from Android Kotlin/Java code through JNI ([Java Native Interface](https://en.wikipedia.org/wiki/Java_Native_Interface)).
 
+## Get Submodules
+Make sure submodules are initialized and updated 
+```
+git submodule update --init --recursive
+```
 
 ## How to use this repository
 
