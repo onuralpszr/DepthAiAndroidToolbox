@@ -13,8 +13,14 @@
 
 DepthAi Android Toolbox Application For OAK-D Devices
 
+## Description 
 
-This android project needs to OpenCV 4.7.0 (and other 4.x.y versions) for Android in [Android Studio](https://developer.android.com/studio) with Native Development Kit (NDK) support.
+This Android application that utilizes the OAK-D camera and OpenCV library to perform YOLOv5 object detection and depth detection. The OAK-D camera provides high-quality images and videos with advanced depth sensing capabilities, while OpenCV is a widely-used computer vision library that provides various image processing and analysis tools.
+
+With this application, users can take advantage of the OAK-D camera's advanced features to detect and track objects in real-time. The YOLOv5 model is used for object detection, which is a state-of-the-art deep learning model that can recognize a wide range of objects with high accuracy. The depth detection feature enables users to obtain information about the distance between objects in the scene, which can be useful for various applications such as robotics, autonomous driving, and augmented reality.
+
+
+This project needs to OpenCV 4.7.0 (and other 4.x.y versions) for Android in [Android Studio](https://developer.android.com/studio) with Native Development Kit (NDK) support.
 [Android NDK](https://developer.android.com/ndk) enables you to implement your [OpenCV](https://opencv.org) image processing pipeline in C++ and call that C++ code from Android Kotlin/Java code through JNI ([Java Native Interface](https://en.wikipedia.org/wiki/Java_Native_Interface)).
 
 ## Get Submodules
