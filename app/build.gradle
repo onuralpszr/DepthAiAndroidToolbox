@@ -19,7 +19,7 @@ android {
         minSdk 30
         targetSdk 33
         versionCode 1
-        versionName "1.0" + "\"${GetGitHash}\""
+        versionName "1.0" + ".${GetGitHash}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
