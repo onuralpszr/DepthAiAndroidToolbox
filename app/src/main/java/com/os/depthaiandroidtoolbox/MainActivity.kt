@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     /*  private val yolov3ModelPath = "yolo-v3-tiny-tf.blob"
-        private val yolov4ModelPath = "yolov4_tiny_coco_416x416_6shave.blob"*/
+        private val yolov4ModelPath = "yolov4_tiny_coco_416x416_6shave.blob"
+    */
     private val yolov5ModelPath = "yolov5s_416_6shave.blob"
     /*  private val mobilenetModelPath = "mobilenet-ssd.blob"*/
 
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity() {
         outState.putBoolean("running", running)
         outState.putBoolean("firstTime", firstTime)
     }
+
 
 
     external fun startDevice(modelPath: String?, rgbWidth: Int, rgbHeight: Int)
