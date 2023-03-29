@@ -1,4 +1,4 @@
-package com.example.jetpackcompostestmat3.ui.theme
+package com.os.depthaiandroidtoolbox.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
