@@ -3,6 +3,7 @@
 <p>
     <a href=""><img alt="MIT" src="https://img.shields.io/badge/License-MIT-yellow?logo=MIT&logoColor=white"></a>
     <a href="#"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-1.8.10-%23E34F26?logo=Kotlin&logoColor=white"></a>
+    <a href="#"><img alt="JetpackCompose" src="https://img.shields.io/badge/JetpackCompose-1.4.4-4285F4?logo=JetpackCompose&logoColor=white"></a>
     <a href="#"><img alt="OpenCV" src="https://img.shields.io/badge/OpenCV-4.7.0-5C3EE8?logo=OpenCV&logoColor=white"></a>
     <a href="https://conventionalcommits.org"><img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commit-1.0.0-FE5196?logo=conventionalcommits&logoColor=white"></a>
     <a href="#"><img alt="android-studio" src="https://img.shields.io/badge/android studio-Giraffe-3DDC84?logo=androidstudio&logoColor=white"></a>
