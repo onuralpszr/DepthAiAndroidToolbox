@@ -45,7 +45,6 @@ android {
     }
 
 
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -57,37 +56,46 @@ android {
         }
     }
     buildFeatures {
-        viewBinding true
+        compose true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.4'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
     namespace 'com.os.depthaiandroidtoolbox'
-}
+    }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //Std Android/Kotlin libs
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-    implementation 'androidx.activity:activity-compose:1.7.0'
+        //Std Android/Kotlin libs
+        implementation 'androidx.core:core-ktx:1.9.0'
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+        implementation 'androidx.activity:activity-compose:1.7.0'
 
-    // Jetpack Compose
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+        // Jetpack Compose
+        implementation "androidx.compose.ui:ui:$compose_version"
+        implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
 
-    // Material
-    implementation 'androidx.compose.material3:material3:1.1.0-beta01'
-    implementation 'androidx.compose.material:material-icons-extended:1.4.0'
+        // Jetpack Compose Material
+        implementation 'androidx.compose.material3:material3:1.1.0-beta01'
+        implementation 'androidx.compose.material:material-icons-extended:1.4.0'
 
 
-    //OpenCV
-    implementation project(path: ':opencvsdk470')
+        //OpenCV Library
+        implementation project(path: ':opencvsdk470')
 
-    // Test Libs
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
-}
+        // Test Libs
+        testImplementation 'junit:junit:4.13.2'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+        androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+        debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+        debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    }
