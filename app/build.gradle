@@ -13,6 +13,7 @@ def GetGitHash = { ->
 }
 
 android {
+    namespace 'com.os.depthaiandroidtoolbox'
     compileSdk 33
     defaultConfig {
         applicationId "com.os.depthaiandroidtoolbox"
@@ -67,7 +68,7 @@ android {
         }
     }
 
-    namespace 'com.os.depthaiandroidtoolbox'
+
     }
 
     dependencies {
