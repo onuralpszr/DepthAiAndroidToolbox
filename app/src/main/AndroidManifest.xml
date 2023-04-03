@@ -24,6 +24,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.os.depthaiandroidtoolbox.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+
+            <meta-data
+                android:name="com.os.depthaiandroidtoolbox.initializer.TimberInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+
     </application>
 
 </manifest>
