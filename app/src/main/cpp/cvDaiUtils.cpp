@@ -91,9 +91,6 @@ cv::Mat getFrame(const std::shared_ptr<dai::ImgFrame>& imgFrame) {
     if(actualSize < requiredSize) {
         throw std::runtime_error("ImgFrame doesn't have enough data to encode specified frame, required " + std::to_string(requiredSize) + ", actual "
                                  + std::to_string(actualSize) + ". Maybe metadataOnly transfer was made?");
-    } else if(actualSize > requiredSize) {
-        // FIXME doesn't build on Windows (multiple definitions during link)
-        // spdlog::warn("ImgFrame has excess data: actual {}, expected {}", actualSize, requiredSize);
     }
     if(imgFrame->getWidth() <= 0 || imgFrame->getHeight() <= 0) {
         throw std::runtime_error("ImgFrame metadata not valid (width or height = 0)");
@@ -205,7 +202,7 @@ extern "C" void draw_detections(cv::Mat frame, std::vector<dai::ImgDetection>& d
             labelStr = labelMap[labelIndex];
         }
 
-        log("Detection: %s [%f,%f,%f,%f], %f",labelStr.c_str(), detection.xmin, detection.ymin, detection.xmax, detection.ymax, detection.confidence);
+        LOGI("Detection: %s [%f,%f,%f,%f], %f",labelStr.c_str(), detection.xmin, detection.ymin, detection.xmax, detection.ymax, detection.confidence);
 
         cv::putText(frame, labelStr, cv::Point(x1 + 10, y1 + 20), cv::FONT_HERSHEY_TRIPLEX, 0.5, color);
         std::stringstream confStr;

@@ -1,6 +1,5 @@
 package com.os.depthaiandroidtoolbox
 
-import android.content.res.AssetManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +19,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen(assets)
+                    MainScreen(MainViewModel(assets))
                 }
             }
         }

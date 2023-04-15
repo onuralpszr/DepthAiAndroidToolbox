@@ -6,6 +6,7 @@
 #include "cvDaiUtils.h"
 
 
+
 std::shared_ptr<dai::Device> device;
 std::shared_ptr<dai::DataOutputQueue> qRgb, qDepth, qDet;
 cv::Mat detection_img;
@@ -35,7 +36,7 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_startDevice(JNIEnv *env,
 
     // libusb
     auto libusbSetOption = libusb_set_option(nullptr, LIBUSB_OPTION_ANDROID_JNIENV, env);
-    log("libusb_set_option ANDROID_JAVAVM: %s", libusb_strerror(libusbSetOption));
+    LOGI("libusb_set_option ANDROID_JAVAVM: %s", libusb_strerror(libusbSetOption));
 
     // Connect to device and start pipeline
     device = std::make_shared<dai::Device>(dai::OpenVINO::VERSION_2021_4, dai::UsbSpeed::SUPER);
@@ -43,7 +44,7 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_startDevice(JNIEnv *env,
 
     int usbVal = static_cast<int32_t>(device->getUsbSpeed());
     //enum class UsbSpeed : int32_t { UNKNOWN, LOW, FULL, HIGH, SUPER, SUPER_PLUS };
-    log("DepthAi UsbSpeed Type:  %s", std::to_string(usbVal).c_str());
+    LOGI("DepthAi UsbSpeed Type:  %s", std::to_string(usbVal).c_str());
 
 
     // Create pipeline
@@ -167,6 +168,9 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_imageFromJNI(
 
     // Copy image data to cv img
     detection_img = imgframeToCvMat(inRgb);
+
+    LOGI("DepthAi MainViewModel_imageFromJNI Looper");
+
 
     // Copy image data to Bitmap int array
     return cvMatToBmpArray(env, detection_img);
