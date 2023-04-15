@@ -102,10 +102,4 @@ class MainViewModel(val assets: AssetManager) : ViewModel() {
 
         }
     }
-
-    // AssetManager for JNI part
-    // readModelFromAsset from cvDaiUtils uses it.
-    fun getAssetManager(): AssetManager {
-        return assets
-    }
 }

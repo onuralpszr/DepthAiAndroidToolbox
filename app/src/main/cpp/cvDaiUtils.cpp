@@ -7,14 +7,14 @@
 extern "C" void readModelFromAsset(const char* model_path, std::vector<uint8_t>& model_buf, JNIEnv* env, jobject obj)
 {
     jclass clazz = env->GetObjectClass(obj); // or env->FindClass("com/example/myapp/MainActivity");
-    jmethodID method =
-            env->GetMethodID(clazz, "getAssetManager", "()Landroid/content/res/AssetManager;");
-    jobject jam = env->CallObjectMethod(obj, method);
+    jfieldID field = env->GetFieldID(clazz, "assets", "Landroid/content/res/AssetManager;");
+    jobject objectField = env->GetObjectField(obj, field);
+
 
     AAssetManager *assetManager = nullptr;
-    if(jam)
+    if(objectField)
     {
-        assetManager = AAssetManager_fromJava(env, jam);
+        assetManager = AAssetManager_fromJava(env, objectField);
     }
 
     if (assetManager)
