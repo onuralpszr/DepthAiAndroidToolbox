@@ -6,6 +6,9 @@
 cmake_minimum_required(VERSION 3.18.1)
 
 set(BUILD_SHARED_LIBS ON)
+
+option(DEPTHAI_BUILD_EXAMPLES OFF)
+
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/depthai-core)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/libusb)
 
@@ -25,6 +28,7 @@ add_library( # Sets the name of the library.
         SHARED
         # Provides a relative path to your source file(s).
         native-lib.cpp
+        ndklogger.h
         cvDaiUtils.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -44,7 +48,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 set(ANDROID_OPENCV_COMPONENTS "opencv_java" CACHE STRING "")
-find_package(OpenCV REQUIRED COMPONENTS ${ANDROID_OPENCV_COMPONENTS})
+find_package(OpenCV 4.7 REQUIRED COMPONENTS ${ANDROID_OPENCV_COMPONENTS})
 
 target_link_libraries( # Specifies the target library.
         depthaiandroidtoolbox

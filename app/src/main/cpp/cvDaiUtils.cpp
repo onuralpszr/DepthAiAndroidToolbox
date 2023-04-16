@@ -2,7 +2,7 @@
 #include "depthai/depthai.hpp"
 
 #include "cvDaiUtils.h"
-
+#include "ndklogger.h"
 
 extern "C" void readModelFromAsset(const char* model_path, std::vector<uint8_t>& model_buf, JNIEnv* env, jobject obj)
 {
@@ -202,7 +202,7 @@ extern "C" void draw_detections(cv::Mat frame, std::vector<dai::ImgDetection>& d
             labelStr = labelMap[labelIndex];
         }
 
-        LOGI("Detection: %s [%f,%f,%f,%f], %f",labelStr.c_str(), detection.xmin, detection.ymin, detection.xmax, detection.ymax, detection.confidence);
+        LOGD("Detection: %s [%f,%f,%f,%f], %f",labelStr.c_str(), detection.xmin, detection.ymin, detection.xmax, detection.ymax, detection.confidence);
 
         cv::putText(frame, labelStr, cv::Point(x1 + 10, y1 + 20), cv::FONT_HERSHEY_TRIPLEX, 0.5, color);
         std::stringstream confStr;

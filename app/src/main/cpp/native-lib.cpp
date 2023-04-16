@@ -4,7 +4,7 @@
 #include <depthai/depthai.hpp>
 #include <opencv2/opencv.hpp>
 #include "cvDaiUtils.h"
-
+#include "ndklogger.h"
 
 
 std::shared_ptr<dai::Device> device;
