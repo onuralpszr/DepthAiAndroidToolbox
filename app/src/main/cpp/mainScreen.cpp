@@ -1,29 +1,4 @@
-#include<jni.h>
-#include <string>
-#include <libusb.h>
-#include <depthai/depthai.hpp>
-#include <opencv2/opencv.hpp>
-#include "cvDaiUtils.h"
-#include "ndklogger.h"
-
-
-std::shared_ptr<dai::Device> device;
-std::shared_ptr<dai::DataOutputQueue> qRgb, qDepth, qDet;
-cv::Mat detection_img;
-
-// Neural network
-std::vector<uint8_t> model_buffer;
-static std::atomic<bool> syncNN{true};
-std::vector<dai::ImgDetection> detections;
-
-// Closer-in minimum depth, disparity range is doubled (from 95 to 190):
-static std::atomic<bool> extended_disparity{true};
-auto maxDisparity = extended_disparity ? 190.0f : 95.0f;
-
-// Better accuracy for longer distance, fractional disparity 32-levels:
-static std::atomic<bool> subpixel{false};
-// Better handling for occlusions:
-static std::atomic<bool> lr_check{false};
+#include "mainScreen.h"
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_os_depthaiandroidtoolbox_MainViewModel_startDevice(JNIEnv *env,
@@ -36,7 +11,6 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_startDevice(JNIEnv *env,
 
     // libusb
     auto libusbSetOption = libusb_set_option(nullptr, LIBUSB_OPTION_ANDROID_JNIENV, env);
-    LOGI("libusb_set_option ANDROID_JAVAVM: %s", libusb_strerror(libusbSetOption));
 
     // Connect to device and start pipeline
     device = std::make_shared<dai::Device>(dai::OpenVINO::VERSION_2021_4, dai::UsbSpeed::SUPER);
@@ -44,7 +18,8 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_startDevice(JNIEnv *env,
 
     int usbVal = static_cast<int32_t>(device->getUsbSpeed());
     //enum class UsbSpeed : int32_t { UNKNOWN, LOW, FULL, HIGH, SUPER, SUPER_PLUS };
-    LOGI("DepthAi UsbSpeed Type:  %s", std::to_string(usbVal).c_str());
+    LOGD("libusb_set_option ANDROID_JAVAVM: %s", libusb_strerror(libusbSetOption));
+    LOGD("DepthAi UsbSpeed Type:  %s", std::to_string(usbVal).c_str());
 
 
     // Create pipeline
@@ -78,9 +53,11 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_startDevice(JNIEnv *env,
     detectionNetwork->setConfidenceThreshold(0.5f);
     detectionNetwork->setNumClasses(80);
     detectionNetwork->setCoordinateSize(4);
+
 // Yolov3/v4 tiny
 //    detectionNetwork->setAnchors({10, 14, 23, 27, 37, 58, 81, 82, 135, 169, 344, 319});
 //    detectionNetwork->setAnchorMasks({{"side26", {1, 2, 3}}, {"side13", {3, 4, 5}}});
+
 // Yolov5s
     detectionNetwork->setAnchors({10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90,
                                   156, 198, 373, 326});
@@ -169,9 +146,6 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_imageFromJNI(
     // Copy image data to cv img
     detection_img = imgframeToCvMat(inRgb);
 
-    LOGI("DepthAi MainViewModel_imageFromJNI Looper");
-
-
     // Copy image data to Bitmap int array
     return cvMatToBmpArray(env, detection_img);
 }
@@ -225,3 +199,5 @@ Java_com_os_depthaiandroidtoolbox_MainViewModel_detectionImageFromJNI(
     // Copy image data to Bitmap int array
     return cvMatToBmpArray(env, detection_img);
 }
+
+
