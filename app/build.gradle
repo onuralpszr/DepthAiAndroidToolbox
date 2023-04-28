@@ -78,7 +78,7 @@ android {
         implementation 'androidx.core:core-ktx:1.10.0'
         implementation 'androidx.appcompat:appcompat:1.6.1'
         implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-        implementation 'androidx.activity:activity-compose:1.7.0'
+        implementation 'androidx.activity:activity-compose:1.7.1'
         implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
 
@@ -87,8 +87,8 @@ android {
         implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
 
         // Jetpack Compose Material
-        implementation 'androidx.compose.material3:material3:1.1.0-beta02'
-        implementation 'androidx.compose.material:material-icons-extended:1.4.1'
+        implementation 'androidx.compose.material3:material3:1.1.0-rc01'
+        implementation 'androidx.compose.material:material-icons-extended:1.4.2'
 
         // AndroidX Startup
         implementation "androidx.startup:startup-runtime:1.1.1"
@@ -104,7 +104,7 @@ android {
         implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
         // LiveData
-        implementation 'androidx.compose.runtime:runtime-livedata:1.5.0-alpha02'
+        implementation 'androidx.compose.runtime:runtime-livedata:1.5.0-alpha03'
 
         // Test Libs
         testImplementation 'junit:junit:4.13.2'
